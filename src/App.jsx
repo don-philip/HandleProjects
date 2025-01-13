@@ -25,16 +25,26 @@ function App() {
       }
       return{
         ...prev,
+        selectedProjectId:undefined,
         projects:[...prev.projects,newProject]
       }
     })
   }
-  console.log(projectState);
+
+  function cancelAddProject(){
+    setProjectState(prev=>{
+      return {
+        ...prev,
+        selectedProjectId: undefined,
+      }
+    })
+  }
+
   
 
   let content
   if(projectState.selectedProjectId===null){
-    content=<NewProject onAddProject={handleAddProject}/>
+    content=<NewProject onAddProject={handleAddProject} onCancelProject={cancelAddProject} />
   }
   else if(projectState.selectedProjectId===undefined){
     content=<NoProjectSelected onStartAddProject={handleStartProject}/>
@@ -42,7 +52,7 @@ function App() {
 
   return (
     <main className="h-screen my-8 flex gap-8">
-      <ProjectSideBar onStartAddProject={handleStartProject}/>
+      <ProjectSideBar  onStartAddProject={handleStartProject} projects={projectState.projects}/>
       
       {content}
     </main>
