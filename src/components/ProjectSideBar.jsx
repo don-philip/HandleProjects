@@ -9,7 +9,7 @@ function ProjectSideBar({onStartAddProject,projects,onSelectProject,selectedProj
             {projects.map(project=> 
             {
                 let cssClasses="w-full text-left px-2 py-1 rounded-sm my-1 hover:text-stone-200 hover:bg-stone-800 "
-                if(projects.id===selectedProjectId){
+                if(project.id===selectedProjectId){
                     cssClasses += "bg-stone-800 text-stone-200"
                 }
                 else
